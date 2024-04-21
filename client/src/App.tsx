@@ -10,8 +10,18 @@ function App() {
   const [room, setRoom] = useState<string>("");
   const [roomName, setRoomName] = useState<string>("");
   const [socketID, setSocketID] = useState<string>("");
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<string[]>([
+    "hello how are you",
+    "I am fine",
+  ]);
   const [showProfile, setShowProfile] = useState<boolean>(false);
+
+  const randomColorGenerator = () => {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return "#" + randomColor;
+  };
+
+  console.log(randomColorGenerator());
 
   const copyToClipboard = () => {
     toast.dismiss();
@@ -71,9 +81,20 @@ function App() {
   return (
     <div className="h-screen w-screen items-center justify-center flex flex-col gap-2 relative">
       <Toaster />
-      <ul className="z-0 h-[80vh]">
+      <ul
+        className={`z-0 mt-[60px] flex flex-col gap-2 px-3 ${
+          showProfile ? "" : "h-[78vh]"
+        }`}
+      >
         {messages.map((m, i) => (
-          <li key={i}>{m}</li>
+          // <li key={i} className={`font-bold bg-[${randomColorGenerator()}]`}>{m}</li> not working line
+          <li
+            key={i}
+            className="font-bold"
+            style={{ backgroundColor: randomColorGenerator() }}
+          >
+            {m}
+          </li>
         ))}
       </ul>
       {showProfile ? (
