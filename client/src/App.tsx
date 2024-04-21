@@ -81,22 +81,6 @@ function App() {
   return (
     <div className="h-screen w-screen items-center justify-center flex flex-col gap-2 relative">
       <Toaster />
-      <ul
-        className={`z-0 mt-[60px] flex flex-col gap-2 px-3 ${
-          showProfile ? "" : "h-[78vh]"
-        }`}
-      >
-        {messages.map((m, i) => (
-          // <li key={i} className={`font-bold bg-[${randomColorGenerator()}]`}>{m}</li> not working line
-          <li
-            key={i}
-            className="font-bold"
-            style={{ backgroundColor: randomColorGenerator() }}
-          >
-            {m}
-          </li>
-        ))}
-      </ul>
       {showProfile ? (
         <button
           className="absolute top-5 right-5 bg-red-700 text-white font-bold p-2 px-3 rounded-md border-2 border-red-700 hover:text-red-700 hover:bg-white transition-all duration-300 ease-in-out"
@@ -150,33 +134,53 @@ function App() {
           </form>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex gap-2 float-end">
-          <input
-            type="text"
-            id="input-field"
-            placeholder="Enter the message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key == "Enter") handleSubmit(e);
-            }}
-            className="border-2 border-black rounded-md p-2"
-          />
-          <input
-            type="text"
-            id="input-field"
-            placeholder="Enter the room"
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
-            className="border-2 border-black rounded-md p-2"
-          />
-          <button
-            type="submit"
-            className="bg-blue-700 text-white font-bold p-2 px-3 rounded-md border-2 border-blue-700 hover:text-blue-700 hover:bg-white transition-all duration-300 ease-in-out"
+        <div className="w-[100vw] flex flex-col items-center">
+          <ul
+            className={`z-0 mt-[60px] flex flex-col gap-2 px-3 w-[98vw] ${
+              showProfile ? "" : "h-[78vh]"
+            }`}
           >
-            Send
-          </button>
-        </form>
+            {messages.map((m, i) => (
+              <li
+                key={i}
+                className={`font-bold p-2 rounded-md ${i%2==0 ? 'self-start':'self-end'}`}
+                style={{
+                  backgroundColor: randomColorGenerator(),
+                  color: randomColorGenerator(),
+                }}
+              >
+                {m}
+              </li>
+            ))}
+          </ul>
+          <form onSubmit={handleSubmit} className="flex gap-2">
+            <input
+              type="text"
+              id="input-field"
+              placeholder="Enter the message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") handleSubmit(e);
+              }}
+              className="border-2 border-black rounded-md p-2"
+            />
+            <input
+              type="text"
+              id="input-field"
+              placeholder="Enter the room"
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+              className="border-2 border-black rounded-md p-2"
+            />
+            <button
+              type="submit"
+              className="bg-blue-700 text-white font-bold p-2 px-3 rounded-md border-2 border-blue-700 hover:text-blue-700 hover:bg-white transition-all duration-300 ease-in-out"
+            >
+              Send
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );
