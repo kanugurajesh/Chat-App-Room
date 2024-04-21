@@ -13,6 +13,7 @@ This project is the implement of an chat app using socket.io this project works 
 - Typescript
 - Socket.io
 - Express
+- React-hot-toast
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://rajeshportfolio.me/)
