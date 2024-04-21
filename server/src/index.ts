@@ -22,16 +22,13 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("Id", socket.id);
-  
+
   socket.on("message", ({message, room}) => {
-    // console.log(data);
     socket.to(room).emit("receive-message", message);
   })
 
   socket.on("join-room", (room) => {
     socket.join(room);
-    console.log(`User joined room ${room}`);
   })
 
   socket.on("disconnect", () => {
