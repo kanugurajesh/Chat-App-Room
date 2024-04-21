@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect, useMemo, useState } from "react";
 import { io } from "socket.io-client";
 import toast, { Toaster } from "react-hot-toast";
