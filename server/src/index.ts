@@ -22,11 +22,11 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("User Connected");
   console.log("Id", socket.id);
   
-  socket.on("message", (data) => {
-    console.log(data);
+  socket.on("message", ({message, room}) => {
+    // console.log(data);
+    socket.to(room).emit("receive-message", message);
   })
 
   socket.on("disconnect", () => {
