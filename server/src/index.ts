@@ -8,7 +8,6 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 const server = createServer(app);
-const secretKey = 'AugustDragneel'
 
 const io = new Server(server, {
   cors: {
