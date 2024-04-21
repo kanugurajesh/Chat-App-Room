@@ -8,6 +8,7 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 const server = createServer(app);
+const secretKey = 'AugustDragneel'
 
 const io = new Server(server, {
   cors: {
@@ -29,9 +30,19 @@ io.on("connection", (socket) => {
     socket.to(room).emit("receive-message", message);
   })
 
+  socket.on("join-room", (room) => {
+    socket.join(room);
+    console.log(`User joined room ${room}`);
+  })
+
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
   })
+
+  socket.on("join-room", (room) => {
+    socket.join(room);
+  })
+
 })
 
 server.listen(port, () => {
