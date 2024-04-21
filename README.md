@@ -6,6 +6,20 @@
 
 This project is the implement of an chat app using socket.io this project works only on the same network. But it has many functionalities you can form rooms and directly send messages to a user and the ui is also very clean.
 
+## Project Setup
+
+```bash
+# Fork the repository Then clone the repository from your github and open the folder Chat-App-Room.
+# Then follow the following steps to setup the project
+1. cd client
+2. npm install
+3. npm run dev
+4. cd ..
+5. cd server
+6. npm install
+7. npm run dev
+```
+
 ## Tech Stack
 
 - React.js
