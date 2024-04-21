@@ -5,31 +5,46 @@ import toast, { Toaster } from "react-hot-toast";
 function App() {
   const socket = useMemo(() => io("http://localhost:3000"), []);
 
-  const [message, setMessage] = useState<string>("");
+  // React Hooks
   const [room, setRoom] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const [roomName, setRoomName] = useState<string>("");
   const [socketID, setSocketID] = useState<string>("");
-  const [messages, setMessages] = useState<string[]>([
-    "hello how are you",
-    "I am fine",
-  ]);
+  const [messages, setMessages] = useState<string[]>([]);
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
   const randomColorGenerator = () => {
-    // const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    // return "#" + randomColor;
-    // const blueComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random blue component
-    // return `#0000${blueComponent}`;
+    /*
+      The below code generated colors of all types
+      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      return "#" + randomColor;
+    */
+    /*
+      The below code generates only blue related colors
+      const blueComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random blue component
+      return `#0000${blueComponent}`;
+    */
+
+    // The below code generated both blue and yellow related colors
+
     const isBlue = Math.random() < 0.5; // Determine if it's blue or yellow color
-    const blueComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random blue component
-    const yellowComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random yellow component
-    const color = isBlue ? `#0000${blueComponent}` : `#${yellowComponent}${yellowComponent}00`; // Concatenate blue or yellow components
+
+    const blueComponent = Math.floor(Math.random() * 256)
+      .toString(16)
+      .padStart(2, "0"); // Generates random blue component
+
+    const yellowComponent = Math.floor(Math.random() * 256)
+      .toString(16)
+      .padStart(2, "0"); // Generates random yellow component
+
+    const color = isBlue
+      ? `#0000${blueComponent}`
+      : `#${yellowComponent}${yellowComponent}00`; // Concatenating blue or yellow components
+
     return color;
   };
-  
 
-  console.log(randomColorGenerator());
-
+  // The below function copies the socketID to the clipboard
   const copyToClipboard = () => {
     toast.dismiss();
     if (socketID == "") {
@@ -40,12 +55,14 @@ function App() {
     return navigator.clipboard.writeText(socketID);
   };
 
+  // The below function fires a instruction notfication when user hovers over socketID in profile
   const mouseEnter = () => {
     toast("Click to copy socketID to clipboard", {
       duration: 2000,
     });
   };
 
+  // The below function sends the message to the server which is ultimately goes the required user in the socket network
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!message) {
@@ -60,6 +77,7 @@ function App() {
     setMessage("");
   };
 
+  // The below function adds the current user to a room channel
   const joinRoomHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (roomName == "") {
@@ -71,6 +89,7 @@ function App() {
     setRoomName("");
   };
 
+  // The below useeffect function helps to establish the socket connection
   useEffect(() => {
     socket.on("connect", () => {
       setSocketID(socket.id || "");
@@ -150,7 +169,9 @@ function App() {
             {messages.map((m, i) => (
               <li
                 key={i}
-                className={`font-bold p-2 rounded-md ${i%2==0 ? 'self-start':'self-end'}`}
+                className={`font-bold p-2 rounded-md ${
+                  i % 2 == 0 ? "self-start" : "self-end"
+                }`}
                 style={{
                   backgroundColor: randomColorGenerator(),
                   color: "white",
