@@ -71,7 +71,7 @@ function App() {
   return (
     <div className="h-screen w-screen items-center justify-center flex flex-col gap-2 relative">
       <Toaster />
-      <ul className="z-0">
+      <ul className="z-0 h-[80vh]">
         {messages.map((m, i) => (
           <li key={i}>{m}</li>
         ))}
@@ -93,20 +93,23 @@ function App() {
       )}
 
       {showProfile ? (
-        <div>
-          <h1
-            className="font-bold text-lg bg-black p-3 text-white rounded-md border-2 border-black hover:bg-white hover:text-black transition-all duration-300 ease-in-out cursor-pointer"
-            onClick={copyToClipboard}
-            onMouseEnter={() => mouseEnter()}
-            onMouseLeave={() => toast.dismiss()}
-          >
-            {socketID}
-          </h1>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center gap-2">
+            <h1 className="font-bold text-lg text-blue-700">My SocketID</h1>
+            <button
+              className="font-bold text-lg bg-blue-700 p-3 text-white rounded-md border-2 border-blue-700 hover:bg-white hover:text-blue-700 transition-all duration-300 ease-in-out cursor-pointer px-7"
+              onClick={copyToClipboard}
+              onMouseEnter={() => mouseEnter()}
+              onMouseLeave={() => toast.dismiss()}
+            >
+              {socketID}
+            </button>
+          </div>
           <form
             onSubmit={joinRoomHandler}
             className="flex items-center flex-col gap-2"
           >
-            <h5 className="font-bold text-lg">Join Room</h5>
+            <h1 className="font-bold text-lg text-blue-700">Join Room</h1>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -114,8 +117,7 @@ function App() {
                 placeholder="Enter the roomName"
                 value={roomName}
                 onChange={(e) => setRoomName(e.target.value)}
-                className="border-2 border-black rounded-md pl-2
-     p-2 "
+                className="border-2 border-black rounded-md pl-2 p-2"
               />
               <button
                 type="submit"
@@ -127,7 +129,7 @@ function App() {
           </form>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 z-0">
+        <form onSubmit={handleSubmit} className="flex gap-2 float-end">
           <input
             type="text"
             id="input-field"
@@ -145,7 +147,7 @@ function App() {
             placeholder="Enter the room"
             value={room}
             onChange={(e) => setRoom(e.target.value)}
-            className="border-2 border-black rounded-md pl-2 p-2 self-center"
+            className="border-2 border-black rounded-md p-2"
           />
           <button
             type="submit"
