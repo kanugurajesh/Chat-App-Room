@@ -16,9 +16,17 @@ function App() {
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
   const randomColorGenerator = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return "#" + randomColor;
+    // const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    // return "#" + randomColor;
+    // const blueComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random blue component
+    // return `#0000${blueComponent}`;
+    const isBlue = Math.random() < 0.5; // Determine if it's blue or yellow color
+    const blueComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random blue component
+    const yellowComponent = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); // Generate random yellow component
+    const color = isBlue ? `#0000${blueComponent}` : `#${yellowComponent}${yellowComponent}00`; // Concatenate blue or yellow components
+    return color;
   };
+  
 
   console.log(randomColorGenerator());
 
@@ -145,7 +153,7 @@ function App() {
                 className={`font-bold p-2 rounded-md ${i%2==0 ? 'self-start':'self-end'}`}
                 style={{
                   backgroundColor: randomColorGenerator(),
-                  color: randomColorGenerator(),
+                  color: "white",
                 }}
               >
                 {m}
