@@ -100,7 +100,10 @@ function App() {
     });
 
     return () => {
-      socket.disconnect();
+      // disconnect after 0.5 seconds
+      setTimeout(() => {
+        socket.disconnect();
+      }, 50);
     };
   }, []);
 
