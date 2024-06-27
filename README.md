@@ -9,6 +9,11 @@ This project is the implement of an chat app using socket.io this project works 
 ## Screenshots
 
 <img src="https://github.com/kanugurajesh/Chat-App-Room/assets/77529419/d6405d9c-5b94-42e4-a891-e4dec0acf491" width=1000 height=500 />
+<img src="https://github.com/kanugurajesh/Chat-App-Room/assets/77529419/cee4c07a-cacf-47ac-afd2-dfb29b33dfca" width=1000 height=500 />
+
+## Demo
+
+
 
 ## Project Setup
 
