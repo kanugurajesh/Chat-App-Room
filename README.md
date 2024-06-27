@@ -6,6 +6,10 @@
 
 This project is the implement of an chat app using socket.io this project works only on the same network. But it has many functionalities you can form rooms and directly send messages to a user and the ui is also very clean.
 
+## Screenshots
+
+<img src="https://github.com/kanugurajesh/Chat-App-Room/assets/77529419/d6405d9c-5b94-42e4-a891-e4dec0acf491" width=1000 height=500 />
+
 ## Project Setup
 
 ```bash
